@@ -1,0 +1,25 @@
+// Pipeline to trigger remote pipeline in gitlab with a POST request
+// Generate pipeline trigger token from Project > Settings > CICD > Pipeline Triggers
+//
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+                sh "curl -X POST --fail -F token=${GITLAB_TIGGER_TOKEN} -F ref=main https://gitlab.com/api/v4/projects/38386073/trigger/pipeline"
+            }
+        }
+    }
+}
