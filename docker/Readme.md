@@ -24,13 +24,13 @@ docker run --name jenkins-docker --rm --detach \
   --volume jenkins-docker-certs:/certs/client \
   --volume jenkins-data:/var/jenkins_home \
   --publish 2376:2376 \
-  --storage-driver overlay2 \
-  docker:dind 
+  docker:dind  --storage-driver overlay2 \
   ```
   
 Build a new Jenkins Image with docker cli
-
 ```
+curl -O https://raw.githubusercontent.com/pramode-pandit/jenkins/main/docker/Dockerfile
+
 docker build -t myjenkins-blueocean:2.375.2-1 .
 ```
 
