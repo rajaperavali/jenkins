@@ -26,10 +26,10 @@ pipeline {
     stage('Docker Build') {
     	agent any
       steps {
-      	sh 'docker --version'
-      	sh 'docker build . -t pramodepandit/myrestapp:v1'
-      	sh 'docker login -u p***** -p *****'
-      	sh 'docker push pramodepandit/myrestapp:v1'
+      	sh "docker --version"
+      	sh "docker build . -t pramodepandit/myrestapp:v1"
+      	sh "docker login -u ${DOCKER_USER} -p ${DOCKER_PSWD}"
+      	sh "docker push pramodepandit/myrestapp:v1"
       }
     }
   }
